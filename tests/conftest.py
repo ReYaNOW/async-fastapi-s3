@@ -39,15 +39,10 @@ def upload_file():
 
 
 @pytest.fixture(autouse=True, scope='session')
-async def create_default_bucket():
-    async with get_s3_client() as client:
-        try:
-            await client.create_bucket(Bucket=config.default_bucket_name)
-        except ClientError as e:
-            error_code = e.response['Error']['Code']
-            if error_code != 'BucketAlreadyOwnedByYou':
-                raise e
-        yield
+def create_default_bucket():
+    # trigger lifespan from main.py
+    with TestClient(app):
+        pass
 
 
 @pytest.fixture(autouse=True, scope='function')
