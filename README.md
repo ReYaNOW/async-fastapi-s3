@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d8f91faaed7521df13d2/maintainability)](https://codeclimate.com/github/ReYaNOW/async-fastapi-s3/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d8f91faaed7521df13d2/test_coverage)](https://codeclimate.com/github/ReYaNOW/async-fastapi-s3/test_coverage)
 
-## Asynchronous REST API to work with s3
+## Asynchronous REST API to work with S3
 
 This API provides routes to to work with files:
 upload, download, delete, find by pattern.  
