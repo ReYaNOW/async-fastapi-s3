@@ -1,7 +1,8 @@
-[![Linter check](httpss://github.com/ReYaNOW/MemesAPI/actions/workflows/linter_check.yml/badge.svg)](https://github.com/ReYaNOW/MemesAPI/actions/workflows/linter_check.yml)
-[![Run tests](httpss://github.com/ReYaNOW/MemesAPI/actions/workflows/run_tests.yml/badge.svg)](https://github.com/ReYaNOW/MemesAPI/actions/workflows/run_tests.yml)
-[![Maintainability](httpss://api.codeclimate.com/v1/badges/f1c3173e996e7a7b12ef/maintainability)](https://codeclimate.com/github/ReYaNOW/MemesAPI/maintainability)
-[![Test Coverage](httpss://api.codeclimate.com/v1/badges/f1c3173e996e7a7b12ef/test_coverage)](https://codeclimate.com/github/ReYaNOW/MemesAPI/test_coverage)
+[![Linter check](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/linter_check.yml/badge.svg)](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/linter_check.yml)
+[![Run tests](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/run_tests.yml/badge.svg)](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/run_tests.yml)
+[![Docker push](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/docker_push.yml/badge.svg)](https://github.com/ReYaNOW/async-fastapi-s3/actions/workflows/docker_push.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d8f91faaed7521df13d2/maintainability)](https://codeclimate.com/github/ReYaNOW/async-fastapi-s3/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d8f91faaed7521df13d2/test_coverage)](https://codeclimate.com/github/ReYaNOW/async-fastapi-s3/test_coverage)
 
 ## Asynchronous REST API to work with s3
 
@@ -17,8 +18,8 @@ of launching in Docker Compose in conjunction with [minIO](https://min.io/).
 Stack: Python3.11, FastApi, Asyncpg, Pytest, Docker
 
 ## Documentation
-You can open swagger documentation at http://127.0.0.1:8090/docs after start
-You can also make requests to the web application there.
+You can open swagger documentation at http://127.0.0.1:8090/docs after start  
+You can also make requests to the web application there
 
 ![App preview](https://github.com/ReYaNOW/ReYaNOW/blob/main/Images/s3_preview.png?raw=true)
 
