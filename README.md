@@ -6,7 +6,7 @@
 
 ## Asynchronous REST API to work with S3
 
-This API provides routes to to work with files:
+This API provides routes to work with files:
 upload, download, delete, find by pattern.  
 
 There are tests written using Pytest.   
