@@ -3,8 +3,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Config(BaseSettings, extra='allow'):
-    host: str = '127.0.0.1'
+    host: str = '0.0.0.0'
     port: int
+    reload: bool = False
     workers: int = 1
 
     s3_server_endpoint: str
