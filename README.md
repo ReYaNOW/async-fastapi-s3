@@ -22,8 +22,10 @@ You can open swagger documentation at http://127.0.0.1:8090/docs after start
 You can also make requests to the web application there
 
 ![App preview](https://github.com/ReYaNOW/ReYaNOW/blob/main/Images/s3_preview.png?raw=true)
-
+  
 # Usage  
+- [How to include in a Docker Compose](#how-to-include-in-a-docker-compose-)  
+  
 1. Clone the repository
 
 ```
@@ -48,27 +50,10 @@ USE_SSL=False
 
 S3_ACCESS_KEY=root_user
 S3_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCY
-```  
-- [How to include in a Docker Compose](#how-to-include-in-a-docker-compose-)
+```
 - [How to start a web application](#how-to-start-a-web-application-)
 - [How to start a web application in Docker container](#How-to-start-a-web-application-in-Docker-container)
 - [How to run tests](#How-to-run-tests)
-
-## How to include in a Docker Compose  
-To use this web app in a docker compose file include something like this  
-```yaml
-s3-api:
-  image: reyanpy/async-fastapi-s3:latest
-  container_name: s3-api
-  env_file:
-    - .env
-  environment:
-    S3_ACCESS_KEY: <your access key, BUT you should put it in .env>
-    S3_SECRET_ACCESS_KEY: <your secret access key, BUT you should put it in .env>
-    S3_SERVER_ENDPOINT: <Url to your server>
-  ports:
-    - 8090:8090
-```
 
 ## How to start a web application  
 This requires [Poetry](https://python-poetry.org/docs/#installing-with-pipx)  
@@ -104,6 +89,22 @@ then the server itself
   
 ```
 make compose-start
+```  
+  
+## How to include in a Docker Compose  
+To use this web app in a docker compose file include something like this  
+```yaml
+s3-api:
+  image: reyanpy/async-fastapi-s3:latest
+  container_name: s3-api
+  env_file:
+    - .env
+  environment:
+    S3_ACCESS_KEY: <your access key, BUT you should put it in .env>
+    S3_SECRET_ACCESS_KEY: <your secret access key, BUT you should put it in .env>
+    S3_SERVER_ENDPOINT: <Url to your server>
+  ports:
+    - 8090:8090
 ```
   
 ## New features
