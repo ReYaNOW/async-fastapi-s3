@@ -1,1 +1,103 @@
-# minIO-microservice
+[![Linter check](httpss://github.com/ReYaNOW/MemesAPI/actions/workflows/linter_check.yml/badge.svg)](https://github.com/ReYaNOW/MemesAPI/actions/workflows/linter_check.yml)
+[![Run tests](httpss://github.com/ReYaNOW/MemesAPI/actions/workflows/run_tests.yml/badge.svg)](https://github.com/ReYaNOW/MemesAPI/actions/workflows/run_tests.yml)
+[![Maintainability](httpss://api.codeclimate.com/v1/badges/f1c3173e996e7a7b12ef/maintainability)](https://codeclimate.com/github/ReYaNOW/MemesAPI/maintainability)
+[![Test Coverage](httpss://api.codeclimate.com/v1/badges/f1c3173e996e7a7b12ef/test_coverage)](https://codeclimate.com/github/ReYaNOW/MemesAPI/test_coverage)
+
+## Asynchronous REST API to work with s3
+
+This API provides routes to to work with files:
+upload, download, delete, find by pattern.  
+
+There are tests written using Pytest.   
+Input data validation has been implemented.  
+There is an [example](https://github.com/ReYaNOW/async-fastapi-s3/blob/main/docker-compose.yml)
+of launching in Docker Compose in conjunction with [minIO](https://min.io/).  
+
+
+Stack: Python3.11, FastApi, Asyncpg, Pytest, Docker
+
+## Documentation
+You can open swagger documentation at http://127.0.0.1:8090/docs after start
+You can also make requests to the web application there.
+
+![App preview](https://github.com/ReYaNOW/ReYaNOW/blob/main/Images/s3_preview.png?raw=true)
+
+# Usage  
+1. Clone the repository
+
+```
+git clone https://github.com/ReYaNOW/MemesAPI.git
+```
+
+2. Go to the project directory and rename .env.example to .env
+  
+```
+cd MemesAPI
+mv .env.example .env
+```  
+3. Specify MAIN_SERVER_URL in .env from witch you will make requests to this server.  
+Other requests will be blocked via [CORS](https://developer.mozilla.org/ru/docs/Web/HTTP/CORS).  
+Leave it as is if you are going to run it locally.  
+  
+[Optional] If you already have an S3 server, you can change variables in .env.    
+Set USE_SSL to True if your server has a ssl certificate.  
+```dotenv
+S3_SERVER_ENDPOINT=http://127.0.0.1:9000
+USE_SSL=False 
+
+S3_ACCESS_KEY=root_user
+S3_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCY
+```  
+
+- [How to start a web application](#How-to-start-a-web-application)
+- [How to start a web application in Docker container](#How-to-start-a-web-application-in-Docker-container)
+- [How to run tests](#How-to-run-tests)
+
+## How to start a web application
+This requires [Poetry](https://python-poetry.org/docs/#installing-with-pipx)  
+
+4. Install Python dependencies
+  
+```
+poetry install
+```
+
+5. Start a local server if you specified your S3 server
+  
+```
+make dev
+```
+
+Либо сначала запустить сервер [MinIO](https://min.io/) в Docker контейнере, а потом уже сам сервер
+  
+```
+make compose-dev
+```
+
+## How to start a web application in Docker container
+
+4. Start a local server if you specified your S3 server in container
+  
+```
+make docker-run
+```
+
+Or first run the [MinIO](https://min.io/) server in a Docker container,
+then the server itself
+  
+```
+make compose-start
+```
+  
+## New features
+If you are missing some interactions with S3,
+create an issue and I will add it ASAP
+
+## How to run tests
+1. Install all python dependencies as described [here](#Usage-)
+
+2. Run tests
+  
+```
+make test
+```
