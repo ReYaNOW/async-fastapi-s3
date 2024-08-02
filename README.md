@@ -24,7 +24,7 @@ You can also make requests to the web application there
 ![App preview](https://github.com/ReYaNOW/ReYaNOW/blob/main/Images/s3_preview.png?raw=true)
   
 # Usage  
-- [How to include in a Docker Compose](#how-to-include-in-a-docker-compose-)  
+- [How to include in a Docker Compose](#how-to-include-in-a-docker-compose)  
   
 1. Clone the repository
 
@@ -51,11 +51,11 @@ USE_SSL=False
 S3_ACCESS_KEY=root_user
 S3_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCY
 ```
-- [How to start a web application](#how-to-start-a-web-application-)
+- [How to start a web application](#how-to-start-a-web-application)
 - [How to start a web application in Docker container](#How-to-start-a-web-application-in-Docker-container)
 - [How to run tests](#How-to-run-tests)
 
-## How to start a web application  
+## How to start a web application
 This requires [Poetry](https://python-poetry.org/docs/#installing-with-pipx)  
 
 4. Install Python dependencies
@@ -92,7 +92,7 @@ with [docker-compose.yml](https://github.com/ReYaNOW/async-fastapi-s3/blob/main/
 make compose-start
 ```  
   
-## How to include in a Docker Compose  
+## How to include in a Docker Compose
 To use this web app in a docker compose file include something like this  
 ```yaml
 s3-api:
