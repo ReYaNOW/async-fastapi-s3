@@ -2,7 +2,6 @@ from contextlib import asynccontextmanager
 
 import pytest
 from aiobotocore.session import get_session
-from botocore.exceptions import ClientError
 from fastapi.testclient import TestClient
 
 from s3_api.config import config
