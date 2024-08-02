@@ -1,13 +1,10 @@
 services:
   s3-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: reyanpy/async-fastapi-s3:latest
     container_name: files-api
     env_file:
       - .env
     environment:
-      HOST: '0.0.0.0'
       S3_SERVER_ENDPOINT: http://minio:9000
     ports:
       - 8090:8090
