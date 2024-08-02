@@ -1,5 +1,5 @@
 dev:
-	poetry run fastapi dev s3_api/main.py
+	RELOAD=True HOST='127.0.0.1' poetry run python3 s3_api/main.py
 
 compose-dev:
 	docker compose up -d --remove-orphans
@@ -7,6 +7,9 @@ compose-dev:
 
 compose-start:
 	docker compose --profile full up --remove-orphans
+
+docker-run:
+	docker run -p 8090:8090 --env-file .env reyanpy/async-fastapi-s3:latest
 
 lint:
 	poetry run ruff check
