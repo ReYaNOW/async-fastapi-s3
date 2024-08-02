@@ -1,0 +1,11 @@
+services:
+  test-minio:
+    image: minio/minio
+    container_name: test_minio_server
+    restart: always
+    env_file:
+      - .test.env
+    command: server --address ":9050" --console-address ":9051" /data
+    ports:
+      - 9050:9050
+      - 9051:9051
