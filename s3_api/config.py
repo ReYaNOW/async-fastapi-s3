@@ -1,4 +1,4 @@
-from pydantic import Extra, HttpUrl, root_validator, model_validator
+from pydantic import HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

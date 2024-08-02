@@ -4,10 +4,10 @@ from contextlib import asynccontextmanager
 import aiohttp
 from aiobotocore.session import get_session
 from botocore.exceptions import ClientError
-from fastapi import UploadFile, HTTPException
+from fastapi import HTTPException, UploadFile
 
 from s3_api.config import config
-from s3_api.utils import info_logger, error_logger
+from s3_api.utils import error_logger, info_logger
 
 UPLOAD_CHUNK_SIZE = 5 * 1024 * 1024
 CHUNK_SIZE = 1024 * 1024
@@ -16,9 +16,9 @@ CHUNK_SIZE = 1024 * 1024
 class S3Client:
     def __init__(self):
         self.config = {
-            "aws_access_key_id": config.s3_access_key,
-            "aws_secret_access_key": config.s3_secret_access_key,
-            "endpoint_url": config.s3_server_endpoint,
+            'aws_access_key_id': config.s3_access_key,
+            'aws_secret_access_key': config.s3_secret_access_key,
+            'endpoint_url': config.s3_server_endpoint,
             'use_ssl': config.use_ssl,
         }
         self.bucket_name = config.default_bucket_name
@@ -57,7 +57,7 @@ class S3Client:
             raise HTTPException(
                 status_code=404,
                 detail=f'File not found: {filename}',
-            )
+            ) from None
 
         except ClientError as e:
             self.error_message(f'Error downloading file: {filename}\n{e}')
@@ -109,7 +109,7 @@ class S3Client:
                     Key=filename,
                     UploadId=upload_id,
                 )
-                raise HTTPException(status_code=500, detail=str(e))
+                raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def remove_file(self, filename: str):
         try:
@@ -123,7 +123,7 @@ class S3Client:
 
         except ClientError as e:
             self.error_message(f'Error removing file: {filename}\n{e}')
-            raise HTTPException(status_code=500, detail=str(e))
+            raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def find_files(self, pattern: str):
         try:
@@ -143,8 +143,8 @@ class S3Client:
                             )
                             result.append(
                                 {
-                                    "file_name": filename,
-                                    "content_type": content_type,
+                                    'file_name': filename,
+                                    'content_type': content_type,
                                 }
                             )
             return {'files': result}
@@ -154,7 +154,7 @@ class S3Client:
                 f'There was some error while trying to filter '
                 f'files with pattern: {pattern}\n{e}'
             )
-            raise HTTPException(status_code=500, detail=str(e))
+            raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def create_default_bucket(self):
         async with self.get_client() as client:

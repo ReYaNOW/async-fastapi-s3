@@ -1,10 +1,10 @@
 import io
 
 import pytest
-from PIL import Image, ImageChops
 from botocore.exceptions import ClientError
+from conftest import IMG_NAME, IMG_PATH, client, get_s3_client, image
+from PIL import Image, ImageChops
 
-from conftest import client, image, IMG_PATH, IMG_NAME, get_s3_client
 from s3_api.config import config
 
 
@@ -79,7 +79,7 @@ async def test_download_file(upload_file):
 
 
 async def test_negative_download_file(upload_file):
-    response = client.get(f'/files/something.jpg')
+    response = client.get('/files/something.jpg')
     assert response.status_code == 404
 
 
@@ -99,7 +99,7 @@ async def test_delete_file(upload_file):
 
 
 async def test_negative_delete_file(upload_file):
-    response = client.delete(f'/files/something.jpg')
+    response = client.delete('/files/something.jpg')
     assert response.status_code == 200
 
 
@@ -112,10 +112,10 @@ async def test_find_files():
         )
     client.post(
         '/files',
-        data={'new_filename': f'different_name.jpg'},
+        data={'new_filename': 'different_name.jpg'},
         files={'file': image},
     )
-    response = client.get(f'/files', params={'pattern': 'other_filename.jpg'})
+    response = client.get('/files', params={'pattern': 'other_filename.jpg'})
     assert response.status_code == 200
     assert response.json() == {
         'files': [

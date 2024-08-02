@@ -1,7 +1,6 @@
 from uuid import UUID
 
-from pydantic import BaseModel
-from pydantic import field_validator
+from pydantic import BaseModel, field_validator
 
 
 class ListRequest(BaseModel):
@@ -31,7 +30,7 @@ class UploadUniqueFileNameResponse(BaseModel):
             UUID(uuid, version=4)
         except ValueError:
             raise ValueError(
-                f"Incorrect filename format. Filename: {value}\n"
+                f'Incorrect filename format. Filename: {value}\n'
                 "Should be 'UUID4_filename'"
-            )
+            ) from None
         return value

@@ -1,18 +1,18 @@
-from fastapi import APIRouter, Depends, UploadFile, status, Body
+from fastapi import APIRouter, Body, Depends, UploadFile, status
 from fastapi.responses import StreamingResponse
 
 from s3_api.files.dependencies import (
     get_s3_client,
 )
 from s3_api.files.schemas import (
-    UploadResponse,
-    UploadUniqueFileNameResponse,
     ListRequest,
     ListResponse,
+    UploadResponse,
+    UploadUniqueFileNameResponse,
 )
 from s3_api.files.service import (
-    get_unique_filename,
     S3Client,
+    get_unique_filename,
 )
 
 router = APIRouter(prefix='/files', tags=['Files'])
@@ -28,9 +28,9 @@ async def download(
     response = StreamingResponse(stream, media_type=media_type)
 
     if 'image' not in media_type:
-        response.headers[
-            'Content-Disposition'
-        ] = f'attachment; filename={filename}'
+        response.headers['Content-Disposition'] = (
+            f'attachment; filename={filename}'
+        )
 
     return response
 

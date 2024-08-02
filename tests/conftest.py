@@ -5,8 +5,8 @@ from aiobotocore.session import get_session
 from botocore.exceptions import ClientError
 from fastapi.testclient import TestClient
 
-from s3_api.main import app
 from s3_api.config import config
+from s3_api.main import app
 
 IMG_PATH = 'tests/fixtures/images/'
 IMG_NAME = 'img_for_test.jpg'

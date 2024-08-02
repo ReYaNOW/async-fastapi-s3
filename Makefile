@@ -11,7 +11,7 @@ compose-start:
 lint:
 	poetry run ruff check
 
-lint_fix:
+lint-fix:
 	poetry run ruff check --fix
 
 format:
