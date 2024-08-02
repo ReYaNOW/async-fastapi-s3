@@ -15,20 +15,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Get latest Docker image tag
+        id: get_latest_tag
+        run: |
+          LATEST_TAG=$(curl -s "https://registry.hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/async-fastapi-s3/tags?page_size=2" | jq -r '.results[1].name')
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+
       - name: Extract version from pyproject.toml
         id: extract_version
         run: |
           VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-      - name: Compare versions
-        id: compare_versions
-        run: |
-          if [ "$LATEST_TAG" = "$VERSION" ]; then
-            echo "Version $VERSION is already up-to-date. Skipping build."
-            exit 0
-          fi
-          echo "Version $VERSION is new. Proceeding with build."
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -40,6 +37,7 @@ jobs:
           password: ${{ secrets.DOCKER_PAT }}
 
       - name: Build and push Docker image
+        if: ${{ env.LATEST_TAG != env.VERSION }}
         uses: docker/build-push-action@v6
         with:
           context: .
