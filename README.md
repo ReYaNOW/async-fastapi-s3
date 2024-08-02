@@ -70,7 +70,8 @@ poetry install
 make dev
 ```
 
-Либо сначала запустить сервер [MinIO](https://min.io/) в Docker контейнере, а потом уже сам сервер
+Or first run the [MinIO](https://min.io/) server in a Docker container,
+then the server itself
   
 ```
 make compose-dev
@@ -84,8 +85,8 @@ make compose-dev
 make docker-run
 ```
 
-Or first run the [MinIO](https://min.io/) server in a Docker container,
-then the server itself
+Or run the [MinIO](https://min.io/) and web-application in Docker Compose 
+with [docker-compose.yml](https://github.com/ReYaNOW/async-fastapi-s3/blob/main/docker-compose.yml)
   
 ```
 make compose-start
