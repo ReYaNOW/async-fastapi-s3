@@ -29,6 +29,7 @@ app.include_router(files_router)
 
 
 if __name__ == '__main__':
+    print(config.host)
     uvicorn.run(
         'main:app',
         host=config.host,

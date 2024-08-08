@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Async-FastAPI-S3"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Sergei <reyangood@gmail.com>"]
 readme = "README.md"
