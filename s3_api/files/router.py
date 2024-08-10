@@ -1,19 +1,15 @@
 from fastapi import APIRouter, Body, Depends, UploadFile, status
 from fastapi.responses import StreamingResponse
 
-from s3_api.files.dependencies import (
-    get_s3_client,
-)
+from s3_api.files.dependencies import get_s3_client
 from s3_api.files.schemas import (
     ListRequest,
     ListResponse,
     UploadResponse,
     UploadUniqueFileNameResponse,
 )
-from s3_api.files.service import (
-    S3Client,
-    get_unique_filename,
-)
+from s3_api.files.service import S3Client
+from s3_api.files.utils import get_unique_filename
 
 router = APIRouter(prefix='/files', tags=['Files'])
 
@@ -23,7 +19,7 @@ async def download(
     filename: str,
     client: S3Client = Depends(get_s3_client),
 ):
-    stream = client.yield_media_type_then_stream_file(filename)
+    stream = await client.yield_media_type_then_stream_file(filename)
     media_type = await anext(stream)
     response = StreamingResponse(stream, media_type=media_type)
 
@@ -46,7 +42,7 @@ async def upload(
 
     if set_unique_name:
         filename = get_unique_filename(filename)
-    await client.upload_file(file, filename)
+    await client.upload_file(filename, file)
 
     if set_unique_name:
         return UploadUniqueFileNameResponse(filename=filename)
