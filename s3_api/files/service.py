@@ -64,6 +64,7 @@ class S3Client:
                 try:
                     async for value in func(self, *args, **kwargs):
                         yield value
+                    self.log_success_message()
                 except ClientError as e:
                     self.display_exception(e, args, kwargs)
 
