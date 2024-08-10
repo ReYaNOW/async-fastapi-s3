@@ -32,7 +32,7 @@ if __name__ == '__main__':
     uvicorn.run(
         'main:app',
         host=config.host,
-        port=config.port,
+        port=config.fastapi_s3_port,
         reload=config.reload,
         workers=config.workers,
     )
