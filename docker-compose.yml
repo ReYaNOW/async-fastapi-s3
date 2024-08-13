@@ -9,7 +9,7 @@ services:
     ports:
       - 8090:8090
     depends_on:
-        - minio
+      - minio
     profiles:
       - full
 
